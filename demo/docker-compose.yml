@@ -1,0 +1,19 @@
+version: "3"
+services:
+    db:
+        image: mysql:8.0.17
+        container_name: "shin_mysql"
+        ports:
+            - 3308:3306
+        environment:
+            MYSQL_DATABASE: react-spring
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_HOST: '%'
+        volumes:
+            - ./dbDocker:/var/lib/mysql
+    app:
+        image: myapp
+        ports:
+            - 8080:8080
+        depends_on:
+            - db
